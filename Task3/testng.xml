@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Tests Suite">
+    <test verbose="2" preserve-order="true" name="PetTests">
+        <classes>
+            <class name="org.n26.tests.AddPet">
+                <methods>
+                    <include name="addPet_checkResponseStatus_expect200"/>
+                </methods>
+            </class>
+            <class name="org.n26.tests.DeletePet">
+                <methods>
+                    <include name="deletePetById_checkResponseStatus_expect200"/>
+                    <include name="deletePetById_verifyPetIsDeletedWithGetPetRequest_expectPetNotFound"/>
+                </methods>
+            </class>
+            <class name="org.n26.tests.GetPet">
+                <methods>
+                    <include name="getPetByNonExistingId_checkResponseStatus_expect404"/>
+                    <include name="getPetById_checkResponseStatus_expect200"/>
+                    <include name="getPetByStatus_checkResponseStatus_expect200"/>
+                    <include name="getPetsByStatus_checkNumberOfPets_expectSize7"/>
+                    <include name="getPetsByTags_checkNumberOfPets_expectSize9"/>
+                </methods>
+            </class>
+            <class name="org.n26.tests.UpdatePet">
+                <methods>
+                    <include name="updatePetWithNonExistingId_checkResponseStatus_expect404"/>
+                    <include name="updatePet_checkResponseStatus_expect200"/>
+                    <include name="updatePetNameToJacky_checkPetName_expectNameJacky"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test preserve-order="true" name="UserTests">
+        <parameter name="firstname" value="Bane" />
+        <classes>
+            <class name="org.n26.tests.UserTests.CreateUser"/>
+            <class name="org.n26.tests.UserTests.GetUser"/>
+            <class name="org.n26.tests.UserTests.UpdateUser"/>
+            <class name="org.n26.tests.UserTests.DeleteUser"/>
+        </classes>
+    </test>
+</suite>
