@@ -44,7 +44,7 @@ public class UpdatePet extends BaseAPITest {
         response.then().statusCode(404);
     }
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void updatePet_checkResponseStatus_expect200(){
         addNewPet(commonRequestSpec, pet);
 

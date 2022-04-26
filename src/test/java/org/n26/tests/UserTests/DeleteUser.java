@@ -1,19 +1,18 @@
-package org.n26.tests;
+package org.n26.tests.UserTests;
 
 import io.restassured.response.Response;
 import org.n26.model.User;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+import org.n26.tests.BaseAPITest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.n26.requests.UserApiRequests.createUser;
-import static org.n26.requests.UserApiRequests.deleteUser;
+import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.n26.requests.UserApiRequests.*;
 
-
-public class CreateUser extends BaseAPITest {
+public class DeleteUser extends BaseAPITest {
 
     User user;
-    @BeforeClass
+    @BeforeMethod
     public void beforeClassSetUp(){
         user = User.builder()
                 .id(1234L)
@@ -25,19 +24,17 @@ public class CreateUser extends BaseAPITest {
                 .phone("12345")
                 .userStatus(1)
                 .build();
+
+        createUser(commonRequestSpec,user);
     }
 
-    @Test
-    public void createUser_checkResponseCode_expect200(){
+    @Test(groups = {"smokeTests"})
+    public void deleteUser_checkResponseCode_expect200(){
 
-        Response response = createUser(commonRequestSpec,user);
+        Response response = deleteUser(commonRequestSpec,user.getUsername());
 
         response.then().statusCode(200);
 
     }
 
-    @AfterMethod
-    public void afterMethodTearDown(){
-        deleteUser(commonRequestSpec, user.getUsername());
-    }
 }

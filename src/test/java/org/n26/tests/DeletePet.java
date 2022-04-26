@@ -34,7 +34,7 @@ public class DeletePet extends BaseAPITest {
                 .build();
     }
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void deletePetById_checkResponseStatus_expect200(){
         addNewPet(commonRequestSpec, pet);
 

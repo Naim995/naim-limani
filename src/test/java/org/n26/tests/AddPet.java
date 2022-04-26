@@ -36,7 +36,7 @@ public class AddPet extends BaseAPITest {
                 .build();
     }
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void addPet_checkResponseStatus_expect200(){
             Response response = addNewPet(commonRequestSpec, pet);
 

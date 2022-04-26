@@ -40,8 +40,8 @@ npm install -g allure-commandline --save-dev
 mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 ```
 
-7. After tests are finished, view test execution report
+7. After tests are finished a folder with name: allure-results will be generated. View test report:
 ```
 allure serve allure-results
 ```
-
+It will open a tab on your browser and redirect you to the allure test report page

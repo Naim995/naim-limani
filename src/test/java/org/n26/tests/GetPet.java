@@ -43,7 +43,7 @@ public class GetPet extends BaseAPITest {
     }
 
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void getPetByNonExistingId_checkResponseStatus_expect404(){
 
         Response response = getPetById(commonRequestSpec, pet.getId());
@@ -51,7 +51,7 @@ public class GetPet extends BaseAPITest {
         response.then().statusCode(404);
     }
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void getPetById_checkResponseStatus_expect200(){
         addNewPet(commonRequestSpec, pet);
 
@@ -60,7 +60,7 @@ public class GetPet extends BaseAPITest {
         response.then().statusCode(200);
     }
 
-    @Test
+    @Test(groups = {"smokeTests"})
     public void getPetByStatus_checkResponseStatus_expect200(){
         addNewPet(commonRequestSpec, pet);
         System.out.println(status.available);
