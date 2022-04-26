@@ -42,6 +42,12 @@ mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 
 7. After tests are finished a folder with name: allure-results will be generated. View test report:
 ```
-allure serve allure-results
+allure serve taraget/allure-results
 ```
 It will open a tab on your browser and redirect you to the allure test report page
+
+**One can also use the maven allure command te generate and open test reports with the following:***
+```
+mvn allure:report
+mvn allure:serve
+```
