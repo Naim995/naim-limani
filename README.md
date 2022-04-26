@@ -1,6 +1,23 @@
-# Swagger Petstore Sample
-
-## Overview
+# Swagger Petstore Sample 
+ Key points
+- All test methods are named properly by specifically describing their purpose and scope of testing. I also refer them as test cases.  
+The proposed test cases for automation are the ones assuring expected response codes (negative testing for example:expect 404 and positive testing for example: expect 200),
+  response body, assuring that data is created by using get requests and asserting that data are created as expected.  
+  Extra tests that I would add is also authentication and authorization use cases. For example: send a request as an unauthorized client and expect status code 403.  
+- One should avoid automating flaky test scenario, exploratory testing or any test cases that have a negative ROI.  
+  When running API tests one must be responsible for the test data management. We can either:
+  - use docker images or local environments, stubs and destroy them in the end or use a similar enviroment (like staging) and delete data by either using api's or droping data inside the database.
+  - the negative of docker images or local env. is that it doesn't take into consideration network issues and in case microservices it doesn't completely mimick the integration between external services,
+  positive is that it is very easy to manage data
+  - the negative of using staging like enviroments which resembles the prod env is that data is harder to manage. We either suppose that delete api endpoints is working correctly or if database is used to 
+    clear/drop data we can expose security risks. Also we are dependant from all external services so if an external service fail you test will provide a false negative. Positive side of this is
+    that it resemebles the prod environment and it takes into consideration almost everything in the sence of real life scneario test execution.
+    
+    <br/>
+  p.s. I encountered some bugs and issues with the petstore hence I avoided some tests such as 
+testing missing mandatory properties in the API request payload
+  
+## Repository overview
 This is the pet store test automation challenge. All tests are located under the following package: ***src/test/java/ip/swagger/petstore/tests***  
 #### Technology used:
 - IDE: IntelliJ
