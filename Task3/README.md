@@ -52,8 +52,9 @@ Wait for the server to run. This will start Jetty embedded on port 8080.
 npm install -g allure-commandline --save-dev
 ```
 
-6.  Run the TestNG xml test suite (filename: testng.xml) 
+6.  Run the TestNG xml test suite by navigating to the Task3 folder and then executing the maven test command(filename: testng.xml) 
 ```
+cd Task3
 mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 ```
 
