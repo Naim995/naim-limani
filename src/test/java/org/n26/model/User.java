@@ -1,12 +1,12 @@
 package org.n26.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Builder(toBuilder = true)
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private long id;
     private String username;

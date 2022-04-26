@@ -1,10 +1,14 @@
 package org.n26.tests.UserTests;
 
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.n26.model.User;
 import org.n26.tests.BaseAPITest;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.n26.requests.UserApiRequests.*;
 
 public class UpdateUser extends BaseAPITest {
@@ -43,14 +47,34 @@ public class UpdateUser extends BaseAPITest {
     }
 
     @Test
-    @Parameters({"firstname"})
-    public void updateUserName_checkUserName(String firstname){
+    public void updateUserName_checkUserName(){
         createUser(commonRequestSpec,user);
         User updatedUserPayload = user.toBuilder()
-                .firstName(firstname)
+                .firstName("Wayne")
                 .build();
         Response response = updateUser(commonRequestSpec, user.getUsername(), updatedUserPayload);
-        response.then().statusCode(200);
+        response.then().body("firstName", equalTo(updatedUserPayload.getFirstName()));
+    }
+
+    @Test
+    public void updateUserName_checkResponseBody(){
+        createUser(commonRequestSpec,user);
+        User updatedUserPayload = user.toBuilder()
+                .firstName("Peter")
+                .build();
+        Response response = updateUser(commonRequestSpec, user.getUsername(), updatedUserPayload);
+
+        response.then()
+                .body("id", equalTo((int)updatedUserPayload.getId()))
+                .body("username", equalTo(updatedUserPayload.getUsername()))
+                .body("firstName", equalTo(updatedUserPayload.getFirstName()))
+                .body("lastName", equalTo(updatedUserPayload.getLastName()))
+                .body("email", equalTo(updatedUserPayload.getEmail()))
+                .body("password", equalTo(updatedUserPayload.getPassword()))
+                .body("phone", equalTo(updatedUserPayload.getPhone()))
+                .body("userStatus", equalTo(updatedUserPayload.getUserStatus()));
+
+
     }
 
     @AfterMethod

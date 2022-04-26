@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.n26.requests.PetStoreApiRequests.addNewPet;
 import static org.n26.requests.PetStoreApiRequests.deletePetById;
 
@@ -41,7 +42,22 @@ public class AddPet extends BaseAPITest {
             Response response = addNewPet(commonRequestSpec, pet);
 
             response.then().statusCode(200);
-        }
+    }
+
+    @Test
+    public void addPet_checkResponseBody(){
+        Response response = addNewPet(commonRequestSpec, pet);
+
+        response.then()
+                .body("id", equalTo(pet.getId().intValue()))
+                .body("name", equalTo(pet.getName()))
+                .body("status", equalTo(pet.getStatus()))
+                .body("category.id", equalTo((int)pet.getCategory().getId()))
+                .body("category.name", equalTo(pet.getCategory().getName()))
+                .body("photoUrls[0]", equalTo(pet.getPhotoUrls().get(0)))
+                .body("tags[0].id", equalTo((int)pet.getTags().get(0).getId()))
+                .body("tags[0].name", equalTo(pet.getTags().get(0).getName()));
+    }
 
     @AfterMethod
     public void afterMethodTearDown(){

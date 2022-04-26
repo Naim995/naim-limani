@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.n26.requests.UserApiRequests.createUser;
 import static org.n26.requests.UserApiRequests.deleteUser;
 
@@ -34,6 +35,23 @@ public class CreateUser extends BaseAPITest {
         Response response = createUser(commonRequestSpec,user);
 
         response.then().statusCode(200);
+
+    }
+
+    @Test
+    public void createUser_checkResponseBody(){
+
+        Response response = createUser(commonRequestSpec,user);
+
+        response.then()
+                .body("id", equalTo((int)user.getId()))
+                .body("username", equalTo(user.getUsername()))
+                .body("firstName", equalTo(user.getFirstName()))
+                .body("lastName", equalTo(user.getLastName()))
+                .body("email", equalTo(user.getEmail()))
+                .body("password", equalTo(user.getPassword()))
+                .body("phone", equalTo(user.getPhone()))
+                .body("userStatus", equalTo(user.getUserStatus()));
 
     }
 
