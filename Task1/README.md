@@ -1,6 +1,6 @@
 # Task 1 
 
-##Exploratory testing notes:
+ ## Exploratory testing notes:
 - Filter:
   - Check if day filter works correctly
   - Check week filter date works correctly by settings "FirstDayOfWeek=Mon"
@@ -32,7 +32,7 @@
   - Swipe on left on the date area to open the filters view
   - Swipe right on the date area to open the main menu
 - 
-##Bugs
+## Bugs
 Device: iOS  
 App version: 1.3.30
 
