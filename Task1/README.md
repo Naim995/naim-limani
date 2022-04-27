@@ -130,8 +130,12 @@ Repro steps:
  
 (more like suggestions not bugs)  
 3. User is able to transfer funds from cash to payment card without having any income on that day. However it reflects if user adds income later   
-4. Missing reset functionality in calculator like 'AC'
+4. Missing reset functionality in calculator like 'AC'. 
 
+
+Documentation for exploratory testing:  
+1. https://www.perforce.com/blog/alm/what-is-exploratory-testing 
+2. https://github.com/Maaikees/exploratory-testing/blob/master/exploratory-testing-with-the-team.md
 
 ## How I executed my exploratory testing
 - First area to exploratory test were screen sections starting from headers to body and to footer. Make sure the subscreens of those areas  and the main functionalities or basic flows (shortest path to certain use case) work as expected. After making sure that the basic flow of a use case works as expected then I test the exception flow and in the end the alternative flows, which are alternatives routes other than the basic flow of a specific functionality.
