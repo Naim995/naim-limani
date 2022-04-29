@@ -24,7 +24,7 @@ This is the pet store test automation challenge. All tests are located under the
   - Lombok
   - Maven
 
-###Project test folder structure
+### Project test folder structure
 
 Test folder structure consists 4 packages:
 1. model - it contains the PetRequest model since it has conflict using the lombok builder
@@ -54,7 +54,7 @@ mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 
 7. After tests are finished a folder with name: allure-results will be generated. View test report:
 ```
-allure serve taraget/allure-results
+allure serve target/allure-results
 ```
 It will open a tab on your browser and redirect you to the allure test report page
 
